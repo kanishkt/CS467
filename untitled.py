@@ -1,16 +1,18 @@
 from flask import Flask
-import praw
+import scrape as t
+import requests as req
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
+query = 'sports'
+page = req.get("https://www.reddit.com/subreddits/search?q=" + query, headers = {'User-agent': 'your bot 0.1'})
+soup = BeautifulSoup(page.text, "html.parser")
+
+
 @app.route('/')
 def hello_world():
-    r = praw.Reddit(user_agent='my_cool_application')
-    submissions = r.get_subreddit('opensource').get_hot(limit=5)
-    summary = [str(x) for x in submissions]
-    searchQ = r.search('sports', subreddit=None, sort=None, syntax=None, period=None)
-    for y in list(searchQ):
-        print y.title
+    t.RedditData()
     return "hello"
 
 if __name__ == '__main__':
