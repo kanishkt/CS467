@@ -3,7 +3,6 @@ import praw
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def hello_world():
     r = praw.Reddit(user_agent='my_cool_application')
