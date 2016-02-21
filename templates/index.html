@@ -37,103 +37,278 @@
         }
         .tooltip rect {
             fill: #ff0000;
-}
+
+        }
+	.navbar-collapse {
+		position: relative;
+		padding-top: 30px !important;
+		max-height: 270px;
+	}
+	.navbar-collapse form[role="search"] {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 100%;
+		padding: 0px;
+		margin: 0px;
+		z-index: 0;
+	}
+	.navbar-collapse form[role="search"] button,
+	.navbar-collapse form[role="search"] input {
+		padding: 8px 12px;
+		border-radius: 0px;
+		border-width: 0px;
+		color: rgb(119, 119, 119);
+		background-color: rgb(248, 248, 248);
+		border-color: rgb(231, 231, 231);
+		box-shadow: none;
+		outline: none;
+	}
+	.navbar-collapse form[role="search"] input {
+		padding: 16px 12px;
+		font-size: 14pt;
+		font-style: italic;
+		color: rgb(160, 160, 160);
+		box-shadow: none;
+	}
+	.navbar-collapse form[role="search"] button[type="reset"] {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.navbar-collapse {
+			padding-top: 0px !important;
+			padding-right: 38px !important;
+		}
+		.navbar-collapse form[role="search"] {
+			width: 38px;
+		}
+		.navbar-collapse form[role="search"] button,
+		.navbar-collapse form[role="search"] input {
+			padding: 15px 12px;
+		}
+		.navbar-collapse form[role="search"] input {
+			font-size: 18pt;
+			opacity: 0;
+			display: none;
+            height: 50px;
+		}
+		.navbar-collapse form[role="search"].active {
+			width: 100%;
+		}
+		.navbar-collapse form[role="search"].active button,
+		.navbar-collapse form[role="search"].active input {
+			display: table-cell;
+			opacity: 1;
+		}
+    	.navbar-collapse form[role="search"].active input {
+			width: 100%;
+		}
+	}
     </style>
+
+    <script>
+         $(function () {
+        // Remove Search if user Resets Form or hits Escape!
+		$('body, .navbar-collapse form[role="search"] button[type="reset"]').on('click keyup', function(event) {
+			console.log(event.currentTarget);
+			if (event.which == 27 && $('.navbar-collapse form[role="search"]').hasClass('active') ||
+				$(event.currentTarget).attr('type') == 'reset') {
+				closeSearch();
+			}
+		});
+
+		function closeSearch() {
+            var $form = $('.navbar-collapse form[role="search"].active')
+    		$form.find('input').val('');
+			$form.removeClass('active');
+		}
+
+		// Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
+		$(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
+			event.preventDefault();
+			var $form = $(this).closest('form'),
+				$input = $form.find('input');
+			$form.addClass('active');
+			$input.focus();
+
+		});
+		// ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
+		// if your form is ajax remember to call `closeSearch()` to close the search container
+		$(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
+			event.preventDefault();
+			var $form = $(this).closest('form'),
+				$input = $form.find('input');
+			$('#showSearchTerm').text($input.val());
+            closeSearch()
+		});
+    });
+    </script>
 
 </head>
 <body>
 <div class="container">
-      <h1>My First Bootstrap Page</h1>
+      <h2>Reddit Visualization</h2>
 </div>
-
 <nav class="navbar navbar-default" role="navigation">
-  <div class="container">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Sports</a></li>
+					<li><a href="#">TV</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">Games</a></li>
+                    <li><a href="#">Politics</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Time <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Past Hour</a></li>
+							<li><a href="#">Past 24 hours</a></li>
+							<li><a href="#">Past Week</a></li>
+                            <li><a href="#">Past Month</a></li>
+                            <li><a href="#">Past Year</a></li>
+						</ul>
+					</li>
+				</ul>
 
-    <div class="navbar-collapse collapse" id="navbar-collapsible">
+{#				<ul class="nav navbar-nav navbar-right">#}
+{#					<li><a href="#">Link</a></li>#}
+{#					<li class="dropdown">#}
+{#						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
+{#						<ul class="dropdown-menu">#}
+{#							<li><a href="#">Action</a></li>#}
+{#							<li><a href="#">Another action</a></li>#}
+{#							<li><a href="#">Something else here</a></li>#}
+{#							<li class="divider"></li>#}
+{#							<li><a href="#">Separated link</a></li>#}
+{#						</ul>#}
+{#					</li>#}
+{#				</ul>#}
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-      </ul>
+				<ul class="nav navbar-nav navbar-right">
+                    <li><a class="navbar-brand" href="#">Search</a></li>
+                </ul>
 
-     <div class="col-xs-7">
-        <i class="icon-search"></i>
-            <input type="search"
-                   class="form-control"
-                   placeholder="Search" />
-     </div>
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+						<input type="text" class="form-control" placeholder="Search">
+						<span class="input-group-btn">
+							<button type="reset" class="btn btn-default">
+								<span class="glyphicon glyphicon-remove">
+									<span class="sr-only">Close</span>
+								</span>
+							</button>
+							<button type="submit" class="btn btn-default">
+								<span class="glyphicon glyphicon-search">
+									<span class="sr-only">Search</span>
+								</span>
+							</button>
+						</span>
+					</div>
+				</form>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 
-    </div>
+<div id="chartContainer">
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
+        var svg = dimple.newSvg("#chartContainer", 1250, 1250);
+        var a = "";
+        a = {{ data }}.toString();
+        var data = a.replace(/\'/g, "&#39;");
+        data = data.replace(/\"/g, "&#34;");
+        // Latest period only
+        //dimple.filterData(data, "Date", "01/12/2012");
+        // Create the chart
+        var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 40, 700, 700)
 
-  </div>
-</nav>
+        // Create a standard bubble of SKUs by Price and Sales Value
+        // We are coloring by Owner as that will be the key in the legend
+        var x = myChart.addTimeAxis("x", "datetime", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d");
+        x.showGridlines = true;
+        x.addOrderRule("Date");
+        myChart.addMeasureAxis("y", "points");
+        myChart.addMeasureAxis("z", "comments");
+        myChart.addSeries(["title", "url", "subreddit"], dimple.plot.bubble);
+        var myLegend = myChart.addLegend(950, 100, 60, 300, "Right");
+        myChart.draw();
 
-    <div id="plot">
-     </div>
-    <!-- 16:9 aspect ratio -->
+        // This is a critical step.  By doing this we orphan the legend. This
+        // means it will not respond to graph updates.  Without this the legend
+        // will redraw when the chart refreshes removing the unchecked item and
+        // also dropping the events we define below.
+        myChart.legends = [];
 
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="http://www.reddit.com"></iframe>
-        </div>
-    <script>
-        // Set up the plot window.
-        var margin = 80;
-        var w = 700 - 2 * margin, h = 500 - 2 * margin;
-        var svg = d3.select("#plot").append("svg")
-                        .attr("width", w + 2 * margin)
-                        .attr("height", h + 2 * margin)
-                    .append("svg:g")
-                        .attr("transform", "translate(" + margin + ", " + margin + ")");
-        // The colorbar.
-        var color = d3.scale.quantize()
-                      .range(["#156b87", "#876315", "#543510", "#872815"])
-                      .domain([0, 1]);
-        // Axes scaling functions.
-        var xscale = d3.scale.linear().range([0, w]);
-        var yscale = d3.scale.linear().range([h, 0]);
-        // The axes objects themselves.
-        var xaxis = d3.svg.axis().scale(xscale).ticks(8);
-        var yaxis = d3.svg.axis().scale(yscale).ticks(8).orient("left");
-        svg.append("svg:g").attr("class", "x axis")
-                           .attr("transform", "translate(0, " + h + ")");
-        svg.append("svg:g").attr("class", "y axis");
-        // Show the information about a particular point.
-        var show_info = function (d) {
-            d3.select("#point-info").text("This is point " + d._id + ". "
-                + "It has the coordinates (" + d.x + ", " + d.y + ").");
-        };
-        // Load the data.
-        var callback = function (data) {
-            // Rescale the axes.
-            xscale.domain([d3.min(data, function (d) { return d.x; }) - 0.05,
-                           d3.max(data, function (d) { return d.x; }) + 0.05]);
-            yscale.domain([d3.min(data, function (d) { return d.y; }) - 0.05,
-                           d3.max(data, function (d) { return d.y; }) + 0.05]);
-            // Display the axes.
-            svg.select(".x.axis").call(xaxis);
-            svg.select(".y.axis").call(yaxis);
-            // Insert the data points.
-            svg.selectAll("circle").data(data).enter()
-                .append("circle")
-                    .attr("id", function (d) { return d._id; })
-                    .attr("cx", function (d) { return xscale(d.x); })
-                    .attr("cy", function (d) { return yscale(d.y); })
-                    .attr("r", function (d) { return 2 * Math.sqrt(d.area); })
-                    .style("fill", function (d) { return color(d.color); })
-                    .on("mouseover", function(){return tooltip.style("visibility", "visible");})
-                    .on("mousedown", show_info);
-        };
-        d3.json("/data", callback);
+        // This block simply adds the legend title. I put it into a d3 data
+        // object to split it onto 2 lines.  This technique works with any
+        // number of lines, it isn't dimple specific.
+        svg.selectAll("title_text")
+            .data(["Click legend to", "show/hide subreddits:"])
+            .enter()
+            .append("text")
+            .attr("x", 850)
+            .attr("y", function(d, i) {
+                return 90 + i * 14;
+            })
+            .style("font-family", "sans-serif")
+            .style("font-size", "10px")
+            .style("color", "Black")
+            .text(function(d) {
+                return d;
+            });
+
+        //Get a unique list of Owner values to use when filtering
+        var filterValues = dimple.getUniqueValues(data, "subreddit");
+        console.log(filterValues);
+        //Get all the rectangles from our now orphaned legend
+        myLegend.shapes.selectAll("rect")
+            // Add a click event to each rectangle
+            .on("click", function(e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFilters = [];
+                // If the filters contain the clicked shape hide it
+                filterValues.forEach(function(f) {
+                    if (f === e.aggField.slice(-1)[0]) {
+                        console.log(f);
+                        console.log(e.aggField);
+                        hide = true;
+                    } else {
+                        //console.log(f);
+                        newFilters.push(f);
+                    }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    newFilters.push(e.aggField.slice(-1)[0]);
+                    d3.select(this).style("opacity", 0.8);
+                }
+                // Update the filters
+                filterValues = newFilters;
+                // Filter the data
+                myChart.data = dimple.filterData(data, "subreddit", filterValues);
+                // Passing a duration parameter makes the chart animate. Without
+                // it there is no transition
+                myChart.draw(800);
+            });
     </script>
+</div>
 
 </body>
 </html>
