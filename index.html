@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<div id="chartContainer">
+    <script src="d3.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+    <script type="text/javascript">
+        var svg = dimple.newSvg("#chartContainer", 1000, 1000);
+
+        var data = [{
+            "title": "Destruction in The Division",
+            "url": "https://www.reddit.com/r/gaming/comments/46qsrl/destruction_in_the_division/",
+            "comments": 1656,
+            "datetime": "2016-02-20T16:39:28+00:00",
+            "points": 5231,
+            "user": "modernmystery",
+            "subreddit": "gaming"
+        }, {
+            "title": "You realize you just got destroyed",
+            "url": "https://www.reddit.com/r/gaming/comments/46pqhi/you_realize_you_just_got_destroyed/",
+            "comments": 1403,
+            "datetime": "2016-02-20T11:27:49+00:00",
+            "points": 3687,
+            "user": "ProwessSG",
+            "subreddit": "gaming"
+        }, {
+            "title": "Who remembers this?",
+            "url": "https://www.reddit.com/r/gaming/comments/46pefd/who_remembers_this/",
+            "comments": 521,
+            "datetime": "2016-02-20T09:05:28+00:00",
+            "points": 2569,
+            "user": "codyine",
+            "subreddit": "gaming"
+        }, {
+            "title": "Probably The Juiciest Falcon Punch You'll See Today",
+            "url": "https://www.reddit.com/r/gaming/comments/46r8n9/probably_the_juiciest_falcon_punch_youll_see_today/",
+            "comments": 117,
+            "datetime": "2016-02-20T18:17:31+00:00",
+            "points": 2790,
+            "user": "IGotBadHair",
+            "subreddit": "gaming"
+        }, {
+            "title": "Scumbag Game Puzzles",
+            "url": "https://www.reddit.com/r/gaming/comments/46sf8m/scumbag_game_puzzles/",
+            "comments": 388,
+            "datetime": "2016-02-20T22:54:27+00:00",
+            "points": 3923,
+            "user": "K-Sir",
+            "subreddit": "gaming"
+        }, {
+            "title": "Hull's goalkeeper after seeing the replay of his incredible save against Arsenal",
+            "url": "https://www.reddit.com/r/sports/comments/46r5hf/hulls_goalkeeper_after_seeing_the_replay_of_his/",
+            "comments": 379,
+            "datetime": "2016-02-20T17:57:33+00:00",
+            "points": 5061,
+            "user": "Sean88888",
+            "subreddit": "sports"
+        }, {
+            "title": "Picturesque New Zealand rugby ground",
+            "url": "https://www.reddit.com/r/sports/comments/46p7ls/picturesque_new_zealand_rugby_ground/",
+            "comments": 60,
+            "datetime": "2016-02-20T07:46:03+00:00",
+            "points": 1800,
+            "user": "blatks",
+            "subreddit": "sports"
+        }, {
+            "title": "Brendon McCullum Smashed Fastest Test 100 in just 54 balls vs Australia",
+            "url": "https://www.reddit.com/r/sports/comments/46oubc/brendon_mccullum_smashed_fastest_test_100_in_just/",
+            "comments": 21,
+            "datetime": "2016-02-20T05:38:00+00:00",
+            "points": 99,
+            "user": "WaseemButt07",
+            "subreddit": "sports"
+        }, {
+            "title": "James Rodriguez dislocates his shoulder against Roma, the physio fixes it within 5 seconds",
+            "url": "https://www.reddit.com/r/sports/comments/46q5t4/james_rodriguez_dislocates_his_shoulder_against/",
+            "comments": 23,
+            "datetime": "2016-02-20T13:53:39+00:00",
+            "points": 91,
+            "user": "punerisaiyan",
+            "subreddit": "sports"
+        }, {
+            "title": "Andrea Pirlo making an awesome score from midfield",
+            "url": "https://www.reddit.com/r/sports/comments/46qcb5/andrea_pirlo_making_an_awesome_score_from_midfield/",
+            "comments": 10,
+            "datetime": "2016-02-20T14:44:23+00:00",
+            "points": 57,
+            "user": "Handicapreader",
+            "subreddit": "sports"
+        }, {
+            "title": "[Spoiler] Bellator 149 Kimbo Slice vs Dada 5000 GIF",
+            "url": "https://www.reddit.com/r/MMA/comments/46onps/spoiler_bellator_149_kimbo_slice_vs_dada_5000_gif/",
+            "comments": 482,
+            "datetime": "2016-02-20T04:42:22+00:00",
+            "points": 1517,
+            "user": "ImKrispy",
+            "subreddit": "MMA"
+        }, {
+            "title": "Joe Rogan on the Kimbo Slice vs. Dada 5000 fight",
+            "url": "https://www.reddit.com/r/MMA/comments/46om7s/joe_rogan_on_the_kimbo_slice_vs_dada_5000_fight/",
+            "comments": 304,
+            "datetime": "2016-02-20T04:29:54+00:00",
+            "points": 1170,
+            "user": "jake0alexander",
+            "subreddit": "MMA"
+        }, {
+            "title": "[Spoiler] A tribute video for a Bellator fight that will go down in history (Kimbo v Dada)",
+            "url": "https://www.reddit.com/r/MMA/comments/46qc8h/spoiler_a_tribute_video_for_a_bellator_fight_that/",
+            "comments": 214,
+            "datetime": "2016-02-20T14:43:45+00:00",
+            "points": 1005,
+            "user": "TheHouseIRL",
+            "subreddit": "MMA"
+        }, {
+            "title": "Dada 5000 in Critical Condition Overnight",
+            "url": "https://www.reddit.com/r/MMA/comments/46rqjf/dada_5000_in_critical_condition_overnight/",
+            "comments": 378,
+            "datetime": "2016-02-20T20:13:33+00:00",
+            "points": 632,
+            "user": "pepsiboycoke",
+            "subreddit": "MMA"
+        }, {
+            "title": "[Spoiler] Kimbo Slice vs DADA 5000 - Post fight thoughts from someone who never stopped believing.",
+            "url": "https://www.reddit.com/r/MMA/comments/46pb5u/spoiler_kimbo_slice_vs_dada_5000_post_fight/",
+            "comments": 87,
+            "datetime": "2016-02-20T08:26:52+00:00",
+            "points": 450,
+            "user": "dada5000ismyhero",
+            "subreddit": "MMA"
+        }, {
+            "title": "If you ever feel the need to take a break from fifa, Rocket League is insanely fun, no matter if you lose or win",
+            "url": "https://www.reddit.com/r/FIFA/comments/46q5fs/if_you_ever_feel_the_need_to_take_a_break_from/",
+            "comments": 79,
+            "datetime": "2016-02-20T13:50:51+00:00",
+            "points": 194,
+            "user": "erikforza",
+            "subreddit": "FIFA"
+        }, {
+            "title": "One thing this FUT stats bug has made clear.",
+            "url": "https://www.reddit.com/r/FIFA/comments/46pukl/one_thing_this_fut_stats_bug_has_made_clear/",
+            "comments": 28,
+            "datetime": "2016-02-20T12:12:29+00:00",
+            "points": 168,
+            "user": "inthe415",
+            "subreddit": "FIFA"
+        }, {
+            "title": "I can't stop winning when I remember to do these two (obvious) things",
+            "url": "https://www.reddit.com/r/FIFA/comments/46ol3f/i_cant_stop_winning_when_i_remember_to_do_these/",
+            "comments": 41,
+            "datetime": "2016-02-20T04:20:27+00:00",
+            "points": 50,
+            "user": "Konval",
+            "subreddit": "FIFA"
+        }, {
+            "title": "Not sure if FIFA16 or WWE 2K16......",
+            "url": "https://www.reddit.com/r/FIFA/comments/46r4xr/not_sure_if_fifa16_or_wwe_2k16/",
+            "comments": 9,
+            "datetime": "2016-02-20T17:54:12+00:00",
+            "points": 49,
+            "user": "lk79",
+            "subreddit": "FIFA"
+        }, {
+            "title": "Anyone want to know the lineups of teams in FIFA 96?",
+            "url": "https://www.reddit.com/r/FIFA/comments/46ree2/anyone_want_to_know_the_lineups_of_teams_in_fifa/",
+            "comments": 84,
+            "datetime": "2016-02-20T18:53:35+00:00",
+            "points": 41,
+            "user": "Dev1114",
+            "subreddit": "FIFA"
+        }, {
+            "title": "Goalkeeper's great reaction to a reply of his own save.",
+            "url": "https://www.reddit.com/r/sportsarefun/comments/46r4sa/goalkeepers_great_reaction_to_a_reply_of_his_own/",
+            "comments": 18,
+            "datetime": "2016-02-20T17:53:19+00:00",
+            "points": 485,
+            "user": "big_swinging_dicks",
+            "subreddit": "sportsarefun"
+        }, {
+            "title": "Sanchez: Last June, I Wasn't Strong Enough For The Workload - Now I Am",
+            "url": "https://www.reddit.com/r/Torontobluejays/comments/46rfvw/sanchez_last_june_i_wasnt_strong_enough_for_the/",
+            "comments": 20,
+            "datetime": "2016-02-20T19:03:50+00:00",
+            "points": 50,
+            "user": "ThQp",
+            "subreddit": "Torontobluejays"
+        }, {
+            "title": "PSA: The 100 section in the Rogers centre moves.",
+            "url": "https://www.reddit.com/r/Torontobluejays/comments/46qthj/psa_the_100_section_in_the_rogers_centre_moves/",
+            "comments": 16,
+            "datetime": "2016-02-20T16:44:18+00:00",
+            "points": 18,
+            "user": "bdwf",
+            "subreddit": "Torontobluejays"
+        }, {
+            "title": "An epic foggy day at Coca-Cola field Victoria Day 2015. Go Bisons!",
+            "url": "https://www.reddit.com/r/Torontobluejays/comments/46t363/an_epic_foggy_day_at_cocacola_field_victoria_day/",
+            "comments": 0,
+            "datetime": "2016-02-21T01:36:05+00:00",
+            "points": 17,
+            "user": "jolthax",
+            "subreddit": "Torontobluejays"
+        }, {
+            "title": "Future of the Blue Jays in Dunedin may be in doubt",
+            "url": "https://www.reddit.com/r/Torontobluejays/comments/46smja/future_of_the_blue_jays_in_dunedin_may_be_in_doubt/",
+            "comments": 7,
+            "datetime": "2016-02-20T23:40:51+00:00",
+            "points": 12,
+            "user": "matt_452",
+            "subreddit": "Torontobluejays"
+        }, {
+            "title": "More Dirt Infield progress photos",
+            "url": "https://www.reddit.com/r/Torontobluejays/comments/46s8se/more_dirt_infield_progress_photos/",
+            "comments": 3,
+            "datetime": "2016-02-20T22:15:20+00:00",
+            "points": 12,
+            "user": "_zerokarma_",
+            "subreddit": "Torontobluejays"
+        }, {
+            "title": "Made a simple Android app for keeping note of your incomings and outgoings",
+            "url": "https://www.reddit.com/r/sportsbook/comments/46pp7s/made_a_simple_android_app_for_keeping_note_of/",
+            "comments": 7,
+            "datetime": "2016-02-20T11:13:07+00:00",
+            "points": 21,
+            "user": "steveCrypto",
+            "subreddit": "sportsbook"
+        }, {
+            "title": "NBA Daily - 2/19/2016 (Friday)",
+            "url": "https://www.reddit.com/r/sportsbook/comments/46ouj0/nba_daily_2192016_friday/",
+            "comments": 98,
+            "datetime": "2016-02-20T05:39:52+00:00",
+            "points": 17,
+            "user": "dsmoove",
+            "subreddit": "sportsbook"
+        }, {
+            "title": "NCAAB Daily - 02/20/2016 (Saturday)",
+            "url": "https://www.reddit.com/r/sportsbook/comments/46omev/ncaab_daily_02202016_saturday/",
+            "comments": 126,
+            "datetime": "2016-02-20T04:31:33+00:00",
+            "points": 14,
+            "user": "xkha0z",
+            "subreddit": "sportsbook"
+        }, {
+            "title": "Parlay Daily - Saturday (2/20/16)",
+            "url": "https://www.reddit.com/r/sportsbook/comments/46qxdq/parlay_daily_saturday_22016/",
+            "comments": 22,
+            "datetime": "2016-02-20T17:08:20+00:00",
+            "points": 7,
+            "user": "FailureInSecurity",
+            "subreddit": "sportsbook"
+        }, {
+            "title": "NASCAR Daily -- Daytona 500 (2/21/16)",
+            "url": "https://www.reddit.com/r/sportsbook/comments/46t6xt/nascar_daily_daytona_500_22116/",
+            "comments": 0,
+            "datetime": "2016-02-21T02:00:37+00:00",
+            "points": 4,
+            "user": "7SEALS",
+            "subreddit": "sportsbook"
+        }, {
+            "title": "Unsportsmanlike Conduct leads to Defeat (Easy Goal)",
+            "url": "https://www.reddit.com/r/HighlightGIFS/comments/46id6x/unsportsmanlike_conduct_leads_to_defeat_easy_goal/",
+            "comments": 10,
+            "datetime": "2016-02-19T02:12:51+00:00",
+            "points": 91,
+            "user": "OG_Lee",
+            "subreddit": "HighlightGIFS"
+        }, {
+            "title": "Thorin's Thoughts - Considering the Enemies of Esports",
+            "url": "https://www.reddit.com/r/esports/comments/46sp1l/thorins_thoughts_considering_the_enemies_of/",
+            "comments": 1,
+            "datetime": "2016-02-20T23:57:42+00:00",
+            "points": 14,
+            "user": "OverlordEric",
+            "subreddit": "esports"
+        }, {
+            "title": "\"Is Esports For The Privileged?\" - A thinkpiece on some low but important barriers of entry into the esports scene.",
+            "url": "https://www.reddit.com/r/esports/comments/46qypj/is_esports_for_the_privileged_a_thinkpiece_on/",
+            "comments": 25,
+            "datetime": "2016-02-20T17:16:30+00:00",
+            "points": 9,
+            "user": "riningear",
+            "subreddit": "esports"
+        }, {
+            "title": "Smite is coming to PlayStation, closed alpha begins today",
+            "url": "https://www.reddit.com/r/esports/comments/46qouj/smite_is_coming_to_playstation_closed_alpha/",
+            "comments": 1,
+            "datetime": "2016-02-20T16:14:15+00:00",
+            "points": 4,
+            "user": "esportsmaybe",
+            "subreddit": "esports"
+        }, {
+            "title": "Halo World Championships NA Regionals Day 2 is live on Twitch!",
+            "url": "https://www.reddit.com/r/esports/comments/46rz85/halo_world_championships_na_regionals_day_2_is/",
+            "comments": 0,
+            "datetime": "2016-02-20T21:15:08+00:00",
+            "points": 4,
+            "user": "BlxckJxckVII",
+            "subreddit": "esports"
+        }, {
+            "title": "Issues with contacting eBettle support?",
+            "url": "https://www.reddit.com/r/esports/comments/46ppvu/issues_with_contacting_ebettle_support/",
+            "comments": 0,
+            "datetime": "2016-02-20T11:20:46+00:00",
+            "points": 5,
+            "user": "Daxt86",
+            "subreddit": "esports"
+        }, {
+            "title": "Something strange happened in this EASHL game",
+            "url": "https://www.reddit.com/r/EA_NHL/comments/46ozp1/something_strange_happened_in_this_eashl_game/",
+            "comments": 4,
+            "datetime": "2016-02-20T06:27:25+00:00",
+            "points": 14,
+            "user": "upupandbelow",
+            "subreddit": "EA_NHL"
+        }, {
+            "title": "This just happened in my BaP goaltender. And the coach blames me.",
+            "url": "https://www.reddit.com/r/EA_NHL/comments/46rwr4/this_just_happened_in_my_bap_goaltender_and_the/",
+            "comments": 7,
+            "datetime": "2016-02-20T20:57:07+00:00",
+            "points": 13,
+            "user": "TheKandyCinema",
+            "subreddit": "EA_NHL"
+        }, {
+            "title": "Any way to tune down goalies? Getting sick of this",
+            "url": "https://www.reddit.com/r/EA_NHL/comments/46pnvq/any_way_to_tune_down_goalies_getting_sick_of_this/",
+            "comments": 7,
+            "datetime": "2016-02-20T10:57:00+00:00",
+            "points": 4,
+            "user": "iamdopers",
+            "subreddit": "EA_NHL"
+        }, {
+            "title": "DAE have a problem with player uncontrollably skating backwards/spinning?",
+            "url": "https://www.reddit.com/r/EA_NHL/comments/46st3b/dae_have_a_problem_with_player_uncontrollably/",
+            "comments": 6,
+            "datetime": "2016-02-21T00:24:43+00:00",
+            "points": 2,
+            "user": "JMcCann1369",
+            "subreddit": "EA_NHL"
+        }, {
+            "title": "Lots of Cross Creases Recently?",
+            "url": "https://www.reddit.com/r/EA_NHL/comments/46ouai/lots_of_cross_creases_recently/",
+            "comments": 7,
+            "datetime": "2016-02-20T05:37:46+00:00",
+            "points": 0,
+            "user": "conebone69jb",
+            "subreddit": "EA_NHL"
+        }];
+
+        // Latest period only
+        //dimple.filterData(data, "Date", "01/12/2012");
+        // Create the chart
+        var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 40, 400, 400)
+
+        // Create a standard bubble of SKUs by Price and Sales Value
+        // We are coloring by Owner as that will be the key in the legend
+        myChart.addMeasureAxis("x", "datetime");
+        myChart.addCategoryAxis("y", "points");
+        myChart.addMeasureAxis("z", "comments");
+        myChart.addSeries(["title", "url", "user", "subreddit"], dimple.plot.bubble);
+        var myLegend = myChart.addLegend(600, 100, 60, 300, "Right");
+        myChart.draw();
+
+        // This is a critical step.  By doing this we orphan the legend. This
+        // means it will not respond to graph updates.  Without this the legend
+        // will redraw when the chart refreshes removing the unchecked item and
+        // also dropping the events we define below.
+        myChart.legends = [];
+
+        // This block simply adds the legend title. I put it into a d3 data
+        // object to split it onto 2 lines.  This technique works with any
+        // number of lines, it isn't dimple specific.
+        svg.selectAll("title_text")
+            .data(["Click legend to", "show/hide subreddits:"])
+            .enter()
+            .append("text")
+            .attr("x", 540)
+            .attr("y", function(d, i) {
+                return 90 + i * 14;
+            })
+            .style("font-family", "sans-serif")
+            .style("font-size", "10px")
+            .style("color", "Black")
+            .text(function(d) {
+                return d;
+            });
+
+        //Get a unique list of Owner values to use when filtering
+        var filterValues = dimple.getUniqueValues(data, "subreddit");
+        console.log(filterValues);
+        //Get all the rectangles from our now orphaned legend
+        myLegend.shapes.selectAll("rect")
+            // Add a click event to each rectangle
+            .on("click", function(e) {
+                // This indicates whether the item is already visible or not
+                var hide = false;
+                var newFilters = [];
+                // If the filters contain the clicked shape hide it
+                filterValues.forEach(function(f) {
+                    if (f === e.aggField.slice(-1)[0]) {
+                        console.log(f);
+                        console.log(e.aggField);
+                        hide = true;
+                    } else {
+                        //console.log(f);
+                        newFilters.push(f);
+                    }
+                });
+                // Hide the shape or show it
+                if (hide) {
+                    d3.select(this).style("opacity", 0.2);
+                } else {
+                    newFilters.push(e.aggField.slice(-1)[0]);
+                    d3.select(this).style("opacity", 0.8);
+                }
+                // Update the filters
+                filterValues = newFilters;
+                // Filter the data
+                myChart.data = dimple.filterData(data, "subreddit", filterValues);
+                // Passing a duration parameter makes the chart animate. Without
+                // it there is no transition
+                myChart.draw(800);
+            });
+    </script>
+</div>
+
+</html>
