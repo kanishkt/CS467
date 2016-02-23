@@ -16,7 +16,7 @@ soup = BeautifulSoup(page.text, "html.parser")
 @app.route('/')
 def hello_world():
     data = t.RedditData()
-    return flask.render_template("index.html" , data=data)
+    return flask.render_template("index.html", data=data)
 
 @app.route("/data")
 @app.route("/data/<int:ndata>")
