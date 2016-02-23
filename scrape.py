@@ -4,8 +4,8 @@ import operator
 import json
 
 
-def RedditData():
-    query = 'tv'
+def RedditData(input):
+    query = input
     time = 'year'
 
     page = req.get("http://redditlist.com/search?adultfilter=0&searchterm=" + query, headers = {'User-agent': 'your bot 0.1'})
