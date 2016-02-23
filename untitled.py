@@ -19,6 +19,27 @@ def getTV():
     data = t.RedditData("tv")
     return flask.render_template("index.html", data=data)
 
+@app.route("/fashion")
+def getFashion():
+    data = t.RedditData("fashion")
+    return flask.render_template("index.html", data=data)
+
+@app.route("/movies")
+def getMovies():
+    data = t.RedditData("movies")
+    return flask.render_template("index.html", data=data)
+
+@app.route("/games")
+def getGames():
+    data = t.RedditData("games")
+    return flask.render_template("index.html", data=data)
+
+@app.route("/politics")
+def getPolitics():
+    data = t.RedditData("politics")
+    return flask.render_template("index.html", data=data)
+
+
 
 if __name__ == '__main__':
     app.run()
