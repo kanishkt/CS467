@@ -4,164 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="../static/css/style.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <title>flask+d3 Hello World</title>
 
     <script src="http://d3js.org/d3.v2.js"></script>
-    <style>
-        html {
-          position: relative;
-          min-height: 100%;
-        }
-        body {
-          /* Margin bottom by footer height */
-          margin-bottom: 60px;
-          background-color: white;
-          color: black;
-        }
-        .footer {
-          position: absolute;
-          bottom: 50px;
-          width: 100%;
-          /* Set the fixed height of the footer here */
-          height: 60px;
-          background-color: #f5f5f5;
-        }
-        path.line {
-            fill: none;
-            stroke: #666;
-            stroke-width: 1.5px;
-        }
-        .domain {
-            stroke-width: 1px;
-        }
-        circle {
-            cursor: pointer;
-        }
-        .axis {
-            shape-rendering: crispEdges;
-        }
-        .axis line, .axis path {
-            stroke-width: 1px;
-            stroke: #000;
-            fill: none;
-        }
-        .tooltip {
-            display: none;
-        }
-        .tooltip.active {
-            display: block;
-        }
-        .tooltip rect {
-            fill: #ff0000;
-
-        }
-	.navbar-collapse {
-		position: relative;
-		padding-top: 30px !important;
-		max-height: 270px;
-	}
-	.navbar-collapse form[role="search"] {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		width: 100%;
-		padding: 0px;
-		margin: 0px;
-		z-index: 0;
-	}
-	.navbar-collapse form[role="search"] button,
-	.navbar-collapse form[role="search"] input {
-		padding: 8px 12px;
-		border-radius: 0px;
-		border-width: 0px;
-		color: rgb(119, 119, 119);
-		background-color: rgb(248, 248, 248);
-		border-color: rgb(231, 231, 231);
-		box-shadow: none;
-		outline: none;
-	}
-	.navbar-collapse form[role="search"] input {
-		padding: 16px 12px;
-		font-size: 14pt;
-		font-style: italic;
-		color: rgb(160, 160, 160);
-		box-shadow: none;
-	}
-	.navbar-collapse form[role="search"] button[type="reset"] {
-		display: none;
-	}
-
-	@media (min-width: 768px) {
-		.navbar-collapse {
-			padding-top: 0px !important;
-			padding-right: 38px !important;
-		}
-		.navbar-collapse form[role="search"] {
-			width: 38px;
-		}
-		.navbar-collapse form[role="search"] button,
-		.navbar-collapse form[role="search"] input {
-			padding: 15px 12px;
-		}
-		.navbar-collapse form[role="search"] input {
-			font-size: 18pt;
-			opacity: 0;
-			display: none;
-            height: 50px;
-		}
-		.navbar-collapse form[role="search"].active {
-			width: 100%;
-		}
-		.navbar-collapse form[role="search"].active button,
-		.navbar-collapse form[role="search"].active input {
-			display: table-cell;
-			opacity: 1;
-		}
-    	.navbar-collapse form[role="search"].active input {
-			width: 100%;
-		}
-	}
-    </style>
-
-    <script>
-         $(function () {
-        // Remove Search if user Resets Form or hits Escape!
-		$('body, .navbar-collapse form[role="search"] button[type="reset"]').on('click keyup', function(event) {
-			console.log(event.currentTarget);
-			if (event.which == 27 && $('.navbar-collapse form[role="search"]').hasClass('active') ||
-				$(event.currentTarget).attr('type') == 'reset') {
-				closeSearch();
-			}
-		});
-
-		function closeSearch() {
-            var $form = $('.navbar-collapse form[role="search"].active')
-    		$form.find('input').val('');
-			$form.removeClass('active');
-		}
-
-		// Show Search if form is not active // event.preventDefault() is important, this prevents the form from submitting
-		$(document).on('click', '.navbar-collapse form[role="search"]:not(.active) button[type="submit"]', function(event) {
-			event.preventDefault();
-			var $form = $(this).closest('form'),
-				$input = $form.find('input');
-			$form.addClass('active');
-			$input.focus();
-
-		});
-		// ONLY FOR DEMO // Please use $('form').submit(function(event)) to track from submission
-		// if your form is ajax remember to call `closeSearch()` to close the search container
-		$(document).on('click', '.navbar-collapse form[role="search"].active button[type="submit"]', function(event) {
-			event.preventDefault();
-			var $form = $(this).closest('form'),
-				$input = $form.find('input');
-			alert($('#showSearchTerm').text($input.val()).toString());
-            closeSearch()
-		});
-    });
-    </script>
 
 </head>
 <body>
@@ -200,20 +49,6 @@
 						</ul>
 					</li>
 				</ul>
-
-{#				<ul class="nav navbar-nav navbar-right">#}
-{#					<li><a href="#">Link</a></li>#}
-{#					<li class="dropdown">#}
-{#						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
-{#						<ul class="dropdown-menu">#}
-{#							<li><a href="#">Action</a></li>#}
-{#							<li><a href="#">Another action</a></li>#}
-{#							<li><a href="#">Something else here</a></li>#}
-{#							<li class="divider"></li>#}
-{#							<li><a href="#">Separated link</a></li>#}
-{#						</ul>#}
-{#					</li>#}
-{#				</ul>#}
 
 				<ul class="nav navbar-nav navbar-right">
                     <li><a class="navbar-brand" href="#">Search</a></li>
@@ -259,7 +94,7 @@
         });
     });
 
-     var svg = dimple.newSvg("#chartContainer", 1000, 1000);
+     var svg = dimple.newSvg("#chartContainer", 1000, 600);
      var data = $('#locations').text();
      data = JSON.parse(data);
 
@@ -272,7 +107,7 @@
         var x = myChart.addTimeAxis("x", "datetime", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d");
         x.showGridlines = true;
         x.addOrderRule("Date");
-     x.col
+     x.col;
         var y = myChart.addMeasureAxis("y", "points");
         myChart.addMeasureAxis("z", "comments");
         var mySeries = myChart.addSeries(["title", "url", "subreddit"], dimple.plot.bubble);
@@ -302,7 +137,7 @@
 {#                .style("stroke", "Yellow")#}
             .text(function(d) {
                 return d;
-            })
+            });
 
         //Get a unique list of subreddit values to use when filtering
         var filterValues = dimple.getUniqueValues(data, "subreddit");
@@ -352,5 +187,6 @@
         <h4 class="text-muted">Made by Kanishk Thareja, Varun Thangavelu, Jennifer Cheng, Lin Zhu </h4>
       </div>
     </footer>
+ <script src="../static/js/main.js"></script>
 </body>
 </html>
