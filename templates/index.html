@@ -10,9 +10,23 @@
 
     <script src="http://d3js.org/d3.v2.js"></script>
     <style>
-        body{
-            background-color: white;
-            color: black;
+        html {
+          position: relative;
+          min-height: 100%;
+        }
+        body {
+          /* Margin bottom by footer height */
+          margin-bottom: 60px;
+          background-color: white;
+          color: black;
+        }
+        .footer {
+          position: absolute;
+          bottom: 50px;
+          width: 100%;
+          /* Set the fixed height of the footer here */
+          height: 60px;
+          background-color: #f5f5f5;
         }
         path.line {
             fill: none;
@@ -143,7 +157,7 @@
 			event.preventDefault();
 			var $form = $(this).closest('form'),
 				$input = $form.find('input');
-			$('#showSearchTerm').text($input.val());
+			alert($('#showSearchTerm').text($input.val()).toString());
             closeSearch()
 		});
     });
@@ -207,7 +221,7 @@
 
                 <form class="navbar-form" role="search">
                     <div class="input-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="Search" id="hello">
 						<span class="input-group-btn">
 							<button type="reset" class="btn btn-default">
 								<span class="glyphicon glyphicon-remove">
@@ -228,7 +242,11 @@
 
 <div id="locations" style="display: none;">
    {{ data }}</div>
-
+<div class="row">
+    <div class="col-md-5 col-md-offset-3">
+        <h3>Visualizing Data for {{ title }}</h3>
+        </div>
+    </div>
 <div class="row">
     <div class="col-md-2 col-md-offset-2">
         <div id="chartContainer">
@@ -329,6 +347,10 @@
     </div>
     </div>
     </div>
-
+   <footer class="footer">
+      <div class="container">
+        <h4 class="text-muted">Made by Kanishk Thareja, Varun Thangavelu, Jennifer Cheng, Lin Zhu </h4>
+      </div>
+    </footer>
 </body>
 </html>
