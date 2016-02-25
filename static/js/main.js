@@ -29,7 +29,7 @@
 			event.preventDefault();
 			var $form = $(this).closest('form'),
 				$input = $form.find('input');
-			alert($('#showSearchTerm').text($input.val()).toString());
+            location.href = "/"+$input.val()+"/year";
             closeSearch()
 		});
     });

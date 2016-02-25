@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <title>flask+d3 Hello World</title>
+    <title>Reddit Visualization</title>
 
     <script src="http://d3js.org/d3.v2.js"></script>
 
@@ -32,20 +32,21 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li id="link"><a href="/">Sports</a></li>
-					<li id="link"><a href="/tv">TV</a></li>
-                    <li id="link"><a href="/fashion">Fashion</a></li>
-                    <li id="link"><a href="/movies">Movies</a></li>
-                    <li id="link"><a href="/games">Games</a></li>
-                    <li id="link"><a href="/politics">Politics</a></li>
+					<li id="link"><a href="/Sports/{{ time }}">Sports</a></li>
+					<li id="link"><a href="/TV/{{ time }}">TV</a></li>
+                    <li id="link"><a href="/Fashion/{{ time }}">Fashion</a></li>
+                    <li id="link"><a href="/Movies/{{ time }}">Movies</a></li>
+                    <li id="link"><a href="/Games/{{ time }}">Games</a></li>
+                    <li id="link"><a href="/Politics/{{ time }}">Politics</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Time <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Past Hour</a></li>
-							<li><a href="#">Past 24 hours</a></li>
-							<li><a href="#">Past Week</a></li>
-                            <li><a href="#">Past Month</a></li>
-                            <li><a href="#">Past Year</a></li>
+							<li><a href="/{{ query }}/hour">Past Hour</a></li>
+							<li><a href="/{{ query }}/day">Past Day</a></li>
+							<li><a href="/{{ query }}/week">Past Week</a></li>
+                            <li><a href="/{{ query }}/month">Past Month</a></li>
+                            <li><a href="/{{ query }}/year">Past Year</a></li>
+                            <li><a href="/{{ query }}/all">All time</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -56,7 +57,7 @@
 
                 <form class="navbar-form" role="search">
                     <div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" id="hello">
+						<input type="text" class="form-control" placeholder="Search">
 						<span class="input-group-btn">
 							<button type="reset" class="btn btn-default">
 								<span class="glyphicon glyphicon-remove">
@@ -79,7 +80,7 @@
    {{ data }}</div>
 <div class="row">
     <div class="col-md-5 col-md-offset-3">
-        <h3>Visualizing Data for {{ title }}</h3>
+        <h3>Visualizing Data for {{ query }}</h3>
         </div>
     </div>
 <div class="row">
@@ -100,11 +101,11 @@
 
         // Create the chart
         var myChart = new dimple.chart(svg, data);
-        myChart.setBounds(60, 40, 450, 450);
+        myChart.setBounds(60, 40, 550, 450);
 
         // Create standard bubbles
         // We are coloring by subreddit as that will be the key in the legend
-        var x = myChart.addTimeAxis("x", "datetime", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d");
+        var x = myChart.addTimeAxis("x", "datetime", "%Y-%m-%d %H:%M:%S", "%b %d %Y %X");
         x.showGridlines = true;
         x.addOrderRule("Date");
      x.col;
