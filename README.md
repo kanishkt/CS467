@@ -3,6 +3,6 @@ This Python-Flask application uses D3.js to visualize trends on Reddit based on 
 
 There is a screenshot of our visualization:-
 
-https://cloud.githubusercontent.com/assets/6327394/13313942/7749b3f2-db67-11e5-8783-ee47d9d9f4ad.png
+![Alt text](https://cloud.githubusercontent.com/assets/6327394/13313942/7749b3f2-db67-11e5-8783-ee47d9d9f4ad.png)
 
 
