@@ -4,7 +4,7 @@ import operator
 import json
 
 
-def RedditData(query , time):
+def RedditData(query, time):
 
     page = req.get("http://redditlist.com/search?adultfilter=0&searchterm=" + query, headers = {'User-agent': 'your bot 0.1'})
     soup = BeautifulSoup(page.text, "html.parser")
@@ -73,4 +73,3 @@ def RedditData(query , time):
 
     data_str = json.dumps(subreddit_posts)
     return data_str
-
